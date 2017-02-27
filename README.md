@@ -1,36 +1,33 @@
 # jQuery MLKeyboard
 
-**ML Keyboard** is a jQuery virtual keyboard with features to change input layouts on the flight.
+**ML Keyboard** 一款Jquery为基础的虚拟键盘.
 
-#### [Demo](http://mbut.github.io/jquery.mlkeyboard/)
+#### [原作者github](https://github.com/mBut/jquery.mlkeyboard/)
 
-## Usage
-* Download <code>jquery.ml-keyboard.min.js</code> and <code>jquery.ml-keyboard.css</code> files and add to your project.
-* Activate the plugin on the input fields with prefered layot <code>$('input').mlKeyboard({layout: 'es_ES'});</code>.
-* It's ready.
+## 使用
+* 下载 <code>jquery.ml-keyboard.min.js</code> 以及 <code>jquery.ml-keyboard.css</code> 并且在项目中引用.
+* 通过 <code>$('input').mlKeyboard();</code> 在项目中激活该插件.
 
 ### Options
-The following options are available to pass into ML Keyboard on initialization.
+可传入选项.
 
-* (string) **layout:** set layout which is applicable to all input fields. By default it has value 'en_US' what is equal to American English layout.
+* (string) **layout:** 暂时只支持英文键盘.
 
-* (boolean) **active_shift:** when user first time focus on input field virtual keyboards shift is active. Default value - true.
+* (boolean) **active_shift:** 当键盘启动时是否自动激活shift键,(默认true).
 
-* (boolean) **active_caps:** initial virtual keyboards caps lock state. Default value - false.
+* (boolean) **active_caps:** 当键盘启动时是否自动激活大写键,(默认false).
 
-* (boolean) **is_hidden:** to create keyboard always visible this value should be changed to false. Default value - true.
+* (boolean) **is_hidden:** 是否自动隐藏键盘(默认true).
 
-* (integer) **open_speed:** is speed at what keyboard shows. Default value - 300.
+* (integer) **open_speed:** 键盘开启速度(默认300).
 
-* (integer) **close_speed:** is speed at what keyboard hides back. Devault value - 100.
+* (integer) **close_speed:** 键盘隐藏速度(默认100).
 
-* (boolean) **enabled:** - change it to false if you want temporary disable keyboard. This param is useful when defines as input data attribute (read below how to set up single inputs with data attributes).
+* (boolean) **enabled:** - 是否自动启用键盘(默认true)(弃用).
 
-To change behaviour of single input field special data attribute should be added to it's tag name <code>data-mlkeyboard-&lt;option&gt;="value"</code> where <code>option</code> is the same attribute like it's described before.
+* (boolean) **locked(新):**  是否自动启用键盘(默认true).
 
-###### Currently possible layouts</h5>
-* **en_US** - English
-* **es_ES** - Spanish
-* **it_IT** - Italian
-* **pt_PT** - Portuguese
-* **ru_RU** - Russian
+* (object) ** trigger_other(新): ** 当键盘采用时候是否添加影响其他元素,当键盘触发时将自动添加或删除所传入的class,默认(undefined). 例子: {selector:".element",class:"smaller"}.
+
+* (string) ** elementToAppend(新): ** 键盘html内容被添加的位置(默认body), 诸如bootstrap的modal键盘需要被添加在modal内才不会被mask覆盖.
+
