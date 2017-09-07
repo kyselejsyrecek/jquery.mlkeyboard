@@ -1,20 +1,84 @@
 {
-  "name": "jquery.ml-keyboard",
-  "version": "0.0.1",
-  "description": "jQuery multilanguage keyboard",
-  "author": "Mihails Butorins",
-  "homepage": "http://mbut.github.io/jquery.mlkeyboard/",
-  "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/mBut/jquery.mlkeyboard"
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/TheRulisp/jquery.mlkeyboard",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/TheRulisp/jquery.mlkeyboard",
+        "spec": "git+https://github.com/TheRulisp/jquery.mlkeyboard.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:TheRulisp/jquery.mlkeyboard.git",
+          "sshUrl": "git+ssh://git@github.com/TheRulisp/jquery.mlkeyboard.git",
+          "httpsUrl": "git+https://github.com/TheRulisp/jquery.mlkeyboard.git",
+          "gitUrl": "git://github.com/TheRulisp/jquery.mlkeyboard.git",
+          "shortcut": "github:TheRulisp/jquery.mlkeyboard",
+          "directUrl": "https://raw.githubusercontent.com/TheRulisp/jquery.mlkeyboard/master/package.json"
+        }
+      },
+      "C:\\wamp\\www\\av-terminal"
+    ]
+  ],
+  "_from": "git+https://github.com/TheRulisp/jquery.mlkeyboard.git",
+  "_id": "jquery.ml-keyboard@0.0.1",
+  "_inCache": true,
+  "_location": "/jquery.ml-keyboard",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/TheRulisp/jquery.mlkeyboard",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/TheRulisp/jquery.mlkeyboard",
+    "spec": "git+https://github.com/TheRulisp/jquery.mlkeyboard.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:TheRulisp/jquery.mlkeyboard.git",
+      "sshUrl": "git+ssh://git@github.com/TheRulisp/jquery.mlkeyboard.git",
+      "httpsUrl": "git+https://github.com/TheRulisp/jquery.mlkeyboard.git",
+      "gitUrl": "git://github.com/TheRulisp/jquery.mlkeyboard.git",
+      "shortcut": "github:TheRulisp/jquery.mlkeyboard",
+      "directUrl": "https://raw.githubusercontent.com/TheRulisp/jquery.mlkeyboard/master/package.json"
+    }
   },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "git+https://github.com/TheRulisp/jquery.mlkeyboard.git#9db325d69e64661c04442c5fd251d426184a9aa8",
+  "_shasum": "d1493db03d535d57e62c8f4ac90810f1675f0e0f",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/TheRulisp/jquery.mlkeyboard",
+  "_where": "C:\\wamp\\www\\av-terminal",
+  "author": {
+    "name": "Mihails Butorins"
+  },
+  "bugs": {
+    "url": "https://github.com/mBut/jquery.mlkeyboard/issues"
+  },
+  "dependencies": {},
+  "description": "jQuery multilanguage keyboard",
   "devDependencies": {
     "grunt": "^0.4.2",
-    "grunt-contrib-uglify": "^0.3.2",
-    "grunt-contrib-sass": "^0.7.2",
-    "grunt-contrib-watch": "^0.5.3",
     "grunt-contrib-concat": "^0.3.0",
+    "grunt-contrib-sass": "^0.7.2",
+    "grunt-contrib-uglify": "^0.3.2",
+    "grunt-contrib-watch": "^0.5.3",
     "grunt-include-replace": "~1.2.0"
-  }
+  },
+  "gitHead": "9db325d69e64661c04442c5fd251d426184a9aa8",
+  "homepage": "http://mbut.github.io/jquery.mlkeyboard/",
+  "license": "MIT",
+  "name": "jquery.ml-keyboard",
+  "optionalDependencies": {},
+  "readme": "# jQuery MLKeyboard\r\n\r\n**ML Keyboard** is a jQuery virtual keyboard with features to change input layouts on the flight.\r\n\r\n#### [Demo](http://mbut.github.io/jquery.mlkeyboard/)\r\n\r\n## Usage\r\n* Download <code>jquery.ml-keyboard.min.js</code> and <code>jquery.ml-keyboard.css</code> files and add to your project.\r\n* Activate the plugin on the input fields with prefered layot <code>$('input').mlKeyboard({layout: 'es_ES'});</code>.\r\n* It's ready.\r\n\r\n### Options\r\nThe following options are available to pass into ML Keyboard on initialization.\r\n\r\n* (string) **layout:** set layout which is applicable to all input fields. By default it has value 'en_US' what is equal to American English layout.\r\n\r\n* (boolean) **active_shift:** when user first time focus on input field virtual keyboards shift is active. Default value - true.\r\n\r\n* (boolean) **active_caps:** initial virtual keyboards caps lock state. Default value - false.\r\n\r\n* (boolean) **is_hidden:** to create keyboard always visible this value should be changed to false. Default value - true.\r\n\r\n* (integer) **open_speed:** is speed at what keyboard shows. Default value - 300.\r\n\r\n* (integer) **close_speed:** is speed at what keyboard hides back. Devault value - 100.\r\n\r\n* (boolean) **enabled:** - change it to false if you want temporary disable keyboard. This param is useful when defines as input data attribute (read below how to set up single inputs with data attributes).\r\n\r\nTo change behaviour of single input field special data attribute should be added to it's tag name <code>data-mlkeyboard-&lt;option&gt;=\"value\"</code> where <code>option</code> is the same attribute like it's described before.\r\n\r\n###### Currently possible layouts</h5>\r\n* **en_US** - English\r\n* **es_ES** - Spanish\r\n* **it_IT** - Italian\r\n* **pt_PT** - Portuguese\r\n* **ru_RU** - Russian\r\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mBut/jquery.mlkeyboard.git"
+  },
+  "version": "0.0.1"
 }

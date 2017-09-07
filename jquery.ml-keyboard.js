@@ -1,5 +1,6 @@
 (function($){
   function Key(params) {
+
   if (Object.prototype.toString.call(params) == "[object Arguments]") {
     this.keyboard = params[0];
   } else {
@@ -89,7 +90,7 @@ Key.prototype.isActive = function() {
   Key.call(this, arguments);
 
   this.id = "mlkeyboard-backspace";
-  this.default_value = 'delete';
+  this.default_value = '←';
 }
 
 KeyDelete.prototype = new Key();
@@ -173,7 +174,7 @@ KeyShift.prototype.defaultClickAction = function() {
 
 KeySpace.prototype = new Key();
 KeySpace.prototype.constructor = KeySpace;
-  var KEYS_COUNT = 53;
+//var KEYS_COUNT = 53;
 
 function Keyboard(selector, options){
   this.defaults = {
@@ -186,7 +187,11 @@ function Keyboard(selector, options){
     show_on_focus: true,
     hide_on_blur: true,
     trigger: undefined,
-    enabled: true
+    enabled: true,
+    keys_count: 53,
+    custom_class: "",
+    handlers: {},
+    action_remapping: {del: 13, tab: 14, caps: 28, ret: 40, shift_left: 41, shift_right: 52, space: 53}
   };
 
   this.global_options = $.extend({}, this.defaults, options);
@@ -195,8 +200,22 @@ function Keyboard(selector, options){
   this.keys = [];
 
   this.$keyboard = $("<div/>").attr("id", "mlkeyboard");
+  if(options.custom_class.length)
+  {
+    this.$keyboard.addClass(options.custom_class);
+  }
   this.$modifications_holder = $("<ul/>").addClass('mlkeyboard-modifications');
   this.$current_input = $(selector);
+
+  if(typeof this.options.handlers.deleteHandler !== "undefined" && Object.toString.call(this.options.handlers.deleteHandler) === '[object Function]')
+  {
+    this.deleteChar = this.options.handlers.deleteHandler;
+  }
+
+  if(typeof this.options.handlers.printCharHandler !== "undefined" && Object.prototype.toString.call(this.options.handlers.printCharHandler) === '[object Function]')
+  {
+    this.printChar = this.options.handlers.printCharHandler;
+  }
 }
 
 Keyboard.prototype.init = function() {
@@ -227,11 +246,11 @@ Keyboard.prototype.setUpKeys = function() {
 Keyboard.prototype.renderKeys = function() {
   var $keys_holder = $("<ul/>");
 
-  for (var i = 0; i<= KEYS_COUNT; i++) {
+  for (var i = 0; i<= this.options.keys_count; i++) {
     var key;
 
     switch(i) {
-    case 13:
+    case this.options.action_remapping.del:
       key = new KeyDelete(this);
       break;
     case 14:
@@ -353,6 +372,9 @@ Keyboard.prototype.inputLocalOptions = function() {
 Keyboard.prototype.printChar = function(char) {
   var selStart = this.$current_input[0].selectionStart;
   var selEnd = this.$current_input[0].selectionEnd;
+
+  console.log(selStart, selEnd);
+
   var textAreaStr = this.$current_input.val();
   var value = textAreaStr.substring(0, selStart) + char + textAreaStr.substring(selEnd);
 
@@ -364,6 +386,8 @@ Keyboard.prototype.printChar = function(char) {
 Keyboard.prototype.deleteChar = function() {
   var selStart = this.$current_input[0].selectionStart;
   var selEnd = this.$current_input[0].selectionEnd;
+
+  console.log(selStart, selEnd);
 
   var textAreaStr = this.$current_input.val();
   var after = textAreaStr.substring(0, selStart-1);
@@ -558,348 +582,16 @@ mlKeyboard.layouts.ru_RU = [
 
 var mlKeyboard = mlKeyboard || {layouts: {}};
 
-mlKeyboard.layouts.es_ES = [
-  {d: '<', u: '>'},
-  {d: '1',u: '¡'},
-  {d: '2',u: '!'},
-  {d: '3',u: '#'},
-  {d: '4',u: '$'},
-  {d: '5',u: '%'},
-  {d: '6',u: '/'},
-  {d: '7',u: '&'},
-  {d: '8',u: '*'},
-  {d: '9',u: '('},
-  {d: '0',u: ')'},
-  {d: '-',u: '_'},
-  {d: '=',u: '+'},
-  {}, // Delete
-  {}, // Tab
-  {d: 'q',u: 'Q'},
-  {d: 'w',u: 'W'},
-  {d: 'e',u: 'E', m: [
-    {d: 'e', u: 'E'},
-    {d: 'é', u: 'É'}
-  ]},
-  {d: 'r',u: 'R'},
-  {d: 't',u: 'T'},
-  {d: 'y',u: 'Y'},
-  {d: 'u',u: 'U', m: [
-    {d: 'u', u: 'U'},
-    {d: 'ú', u: 'Ú'},
-    {d: 'ü', u: 'Ü'}
-  ]},
-  {d: 'i',u: 'I', m: [
-    {d: 'i', u: 'I'},
-    {d: 'í', u: 'Í'}
-  ]},
-  {d: 'o',u: 'O', m: [
-    {d: 'o', u: 'O'},
-    {d: 'ó', u: 'Ó'}
-  ]},
-  {d: 'p',u: 'P'},
-  {d: '´',u: 'º'},
-  {d: '`',u: '¨'},
-  {d: '\'',u: '"'},
-  {}, // Caps lock
-  {d: 'a',u: 'A', m: [
-    {d: 'a', u: 'A'},
-    {d: 'á', u: 'Á'}
-  ]},
-  {d: 's',u: 'S'},
-  {d: 'd',u: 'D'},
-  {d: 'f',u: 'F'},
-  {d: 'g',u: 'G'},
-  {d: 'h',u: 'H'},
-  {d: 'j',u: 'J'},
-  {d: 'k',u: 'K'},
-  {d: 'l',u: 'L'},
-  {d: 'ñ',u: 'Ñ'},
-  {d: ';',u: ':'},
-  {}, // Return
-  {}, // Left shift
-  {d: 'z',u: 'Z'},
-  {d: 'x',u: 'X'},
-  {d: 'c',u: 'C'},
-  {d: 'v',u: 'V'},
-  {d: 'b',u: 'B'},
-  {d: 'n',u: 'N'},
-  {d: 'm',u: 'M'},
-  {d: ',',u: '¿'},
-  {d: '.',u: '?'},
-  {d: 'ç',u: 'Ç'},
-  {}, // Right shift
-  {}  // Space
+mlKeyboard.layouts.numpad = [
+	{d: '1',u: '!'},
+	{d: '2',u: '@'},
+	{d: '3',u: '#'},
+	{d: '4',u: '$'},
+	{d: '5',u: '%'},
+	{d: '6',u: '^'},
+	{d: '7',u: '&'},
+	{d: '8',u: '*'},
+	{d: '9',u: '('},
+    {d: '0',u: ')'},
+    {}
 ];
-
-var mlKeyboard = mlKeyboard || {layouts: {}};
-
-mlKeyboard.layouts.pt_PT = [
-  {d: '\/', u: '|'},
-  {d: '1',u: '!'},
-  {d: '2',u: '"'},
-  {d: '3',u: '#'},
-  {d: '4',u: '$'},
-  {d: '5',u: '%'},
-  {d: '6',u: '&'},
-  {d: '7',u: '/'},
-  {d: '8',u: '('},
-  {d: '9',u: ')'},
-  {d: '0',u: '='},
-  {d: '-',u: '?'},
-  {d: '~',u: '^'},
-  {}, // Delete
-  {}, // Tab
-  {d: 'q',u: 'Q'},
-  {d: 'w',u: 'W'},
-  {d: 'e',u: 'E', m: [
-    {d: 'e', u: 'E'},
-    {d: 'é', u: 'É'},
-    {d: 'ê', u: 'Ê'}
-  ]},
-  {d: 'r',u: 'R'},
-  {d: 't',u: 'T'},
-  {d: 'y',u: 'Y'},
-  {d: 'u',u: 'U', m: [
-    {d: 'u', u: 'U'},
-    {d: 'ú', u: 'Ú'}
-  ]},
-  {d: 'i',u: 'I', m: [
-    {d: 'i', u: 'I'},
-    {d: 'í', u: 'Í'}
-  ]},
-  {d: 'o',u: 'O', m: [
-    {d: 'o', u: 'O'},
-    {d: 'ó', u: 'Ó'},
-    {d: 'õ', u: 'Õ'},
-    {d: 'ô', u: 'Ô'}
-  ]},
-  {d: 'p',u: 'P'},
-  {d: '´',u: 'º'},
-  {d: '`',u: '¨'},
-  {d: '\'',u: '"'},
-  {}, // Caps lock
-  {d: 'a',u: 'A', m: [
-    {d: 'a', u: 'A'},
-    {d: 'á', u: 'Á'},
-    {d: 'à', u: 'À'},
-    {d: 'ã', u: 'Ã'},
-    {d: 'â', u: 'Â'}
-  ]},
-  {d: 's',u: 'S'},
-  {d: 'd',u: 'D'},
-  {d: 'f',u: 'F'},
-  {d: 'g',u: 'G'},
-  {d: 'h',u: 'H'},
-  {d: 'j',u: 'J'},
-  {d: 'k',u: 'K'},
-  {d: 'l',u: 'L'},
-  {d: 'ñ',u: 'Ñ'},
-  {d: ';',u: ':'},
-  {}, // Return
-  {}, // Left shift
-  {d: 'z',u: 'Z'},
-  {d: 'x',u: 'X'},
-  {d: 'c',u: 'C', m: [
-    {d: 'c', u: 'C'},
-    {d: 'ç', u: 'Ç'}
-  ]},
-  {d: 'v',u: 'V'},
-  {d: 'b',u: 'B'},
-  {d: 'n',u: 'N'},
-  {d: 'm',u: 'M'},
-  {d: ',',u: '¿'},
-  {d: '.',u: '?'},
-  {d: 'ç',u: 'Ç'},
-  {}, // Right shift
-  {}  // Space
-];
-
-var mlKeyboard = mlKeyboard || {layouts: {}};
-
-mlKeyboard.layouts.it_IT = [
-  {d: '\\', u: '|'},
-  {d: '1',u: '!'},
-  {d: '2',u: '"'},
-  {d: '3',u: '£'},
-  {d: '4',u: '$'},
-  {d: '5',u: '%'},
-  {d: '6',u: '&'},
-  {d: '7',u: '/'},
-  {d: '8',u: '('},
-  {d: '9',u: ')'},
-  {d: '0',u: '='},
-  {d: '\'',u: '?'},
-  {d: 'ì',u: '^'},
-  {}, // Delete
-  {}, // Tab
-  {d: 'q',u: 'Q'},
-  {d: 'w',u: 'W'},
-  {d: 'e',u: 'E'},
-  {d: 'r',u: 'R'},
-  {d: 't',u: 'T'},
-  {d: 'y',u: 'Y'},
-  {d: 'u',u: 'U'},
-  {d: 'i',u: 'I'},
-  {d: 'o',u: 'O'},
-  {d: 'p',u: 'P'},
-  {d: 'e',u: 'é', m: [
-    {d: 'e', u: 'é'},
-    {d: '[', u: '{'}
-  ]},
-  {d: '+',u: '*', m: [
-    {d: '+', u:'*'},
-    {d: ']', u: '}'}
-  ]},
-  {}, // Caps lock
-  {d: 'a',u: 'A'},
-  {d: 's',u: 'S'},
-  {d: 'd',u: 'D'},
-  {d: 'f',u: 'F'},
-  {d: 'g',u: 'G'},
-  {d: 'h',u: 'H'},
-  {d: 'j',u: 'J'},
-  {d: 'k',u: 'K'},
-  {d: 'l',u: 'L'},
-  {d: 'ò',u: 'ç', m:[
-    {d: 'ò',u: 'ç'},
-    {d:'@', u: 'Ç'}
-  ]},
-  {d: 'à',u: '°', m:[
-    {d: 'à',u: '°'},
-    {d:'#', u: '∞'}
-  ]},
-  {d: 'ù',u: '§'},
-  {}, // Return
-  {}, // Left shift
-  {d: '<', u:'>'},
-  {d: 'z',u: 'Z'},
-  {d: 'x',u: 'X'},
-  {d: 'c',u: 'C'},
-  {d: 'v',u: 'V'},
-  {d: 'b',u: 'B'},
-  {d: 'n',u: 'N'},
-  {d: 'm',u: 'M'},
-  {d: ',',u: ';'},
-  {d: '.',u: ':'},
-  {d: '-',u: '_'},
-  {}, // Right shift
-  {}  // Space
-];
-
-var mlKeyboard = mlKeyboard || {layouts: {}};
-
-mlKeyboard.layouts.fr_FR = [
-  {d: '\/', u: '|'},
-  {d: '1',u: '&'},
-  {d: '2',u: 'é', m:[
-    {d: '2', u:'é'},
-    {d:'~', u:'É'}
-  ]},
-  {d: '3',u: '#', m: [
-    {d:'3', u:'#'},
-    {d:'"', u: '#'}
-  ]},
-  {d: '4',u: '{', m:[
-    {d: '4', u:'{'},
-    {d: '\'', u:'{'}
-  ]},
-  {d: '5',u: '(', m:[
-    {d: '5', u:'('},
-    {d: '[', u:'('}
-  ]},
-  {d: '6',u: '-', m:[
-    {d: '6', u:'-'},
-    {d: '|', u:'-'}
-  ]},
-  {d: '7',u: 'è', m:[
-    {d: '7', u:'è'},
-    {d: '`', u:'è'}
-  ]},
-  {d: '8',u: '_', m:[
-    {d: '8', u:'_'},
-    {d: '\/', u:'_'}
-  ]},
-  {d: '9',u: '', m:[
-    {d: '9', u:'ç'},
-    {d: '^', u:'Ç'}
-  ]},
-  {d: '0',u: 'à', m:[
-    {d: '0', u:'à'},
-    {d: '@', u:'À'}
-  ]},
-  {d: '°',u: ')', m:[
-    {d: '°', u:')'},
-    {d: ']', u:')'}
-  ]},
-  {d: '+',u: '=', m:[
-    {d: '+', u:'='},
-    {d: '}', u:'='}
-  ]},
-  {}, // Delete
-  {}, // Tab
-  {d: 'q',u: 'Q'},
-  {d: 'w',u: 'W'},
-  {d: 'e',u: 'E', m: [
-    {d: 'e', u: 'E'},
-    {d: 'é', u: 'É'},
-    {d: 'ê', u: 'Ê'}
-  ]},
-  {d: 'r',u: 'R'},
-  {d: 't',u: 'T'},
-  {d: 'y',u: 'Y'},
-  {d: 'u',u: 'U', m: [
-    {d: 'u', u: 'U'},
-    {d: 'ú', u: 'Ú'},
-    {d: 'ü', u: 'Ü'}
-  ]},
-  {d: 'i',u: 'I', m: [
-    {d: 'i', u: 'I'},
-    {d: 'í', u: 'Í'}
-  ]},
-  {d: 'o',u: 'O', m: [
-    {d: 'o', u: 'O'},
-    {d: 'ó', u: 'Ó'},
-    {d: 'õ', u: 'Õ'},
-    {d: 'ô', u: 'Ô'}
-  ]},
-  {d: 'p',u: 'P'},
-  {d: '^',u: 'º'},
-  {d: '`',u: '¨'},
-  {d: '\'',u: '"'},
-  {}, // Caps lock
-  {d: 'a',u: 'A', m: [
-    {d: 'a', u: 'A'},
-    {d: 'á', u: 'Á'},
-    {d: 'à', u: 'À'},
-    {d: 'ã', u: 'Ã'},
-    {d: 'â', u: 'Â'}
-  ]},
-  {d: 's',u: 'S'},
-  {d: 'd',u: 'D'},
-  {d: 'f',u: 'F'},
-  {d: 'g',u: 'G'},
-  {d: 'h',u: 'H'},
-  {d: 'j',u: 'J'},
-  {d: 'k',u: 'K'},
-  {d: 'l',u: 'L'},
-  {d: 'ñ',u: 'Ñ'},
-  {d: ';',u: ':'},
-  {}, // Return
-  {}, // Left shift
-  {d: 'z',u: 'Z'},
-  {d: 'x',u: 'X'},
-  {d: 'c',u: 'C', m: [
-    {d: 'c', u: 'C'},
-    {d: 'ç', u: 'Ç'}
-  ]},
-  {d: 'v',u: 'V'},
-  {d: 'b',u: 'B'},
-  {d: 'n',u: 'N'},
-  {d: 'm',u: 'M'},
-  {d: ',',u: '¿'},
-  {d: '.',u: '?'},
-  {d: 'ç',u: 'Ç'},
-  {}, // Right shift
-  {}  // Space
-];
-
