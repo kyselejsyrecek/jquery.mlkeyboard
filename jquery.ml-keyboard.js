@@ -89,7 +89,7 @@ Key.prototype.isActive = function() {
   Key.call(this, arguments);
 
   this.id = "mlkeyboard-backspace";
-  this.default_value = 'delete';
+  this.default_value = '⟵';
 }
 
 KeyDelete.prototype = new Key();
