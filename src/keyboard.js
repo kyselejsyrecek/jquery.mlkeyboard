@@ -7,7 +7,7 @@ function Keyboard(selector, options){
     active_caps: false,
     is_hidden: true,
     open_speed: 300,
-    close_speed: 100,
+    close_speed: 300,
     show_on_focus: true,
     hide_on_blur: true,
     trigger: undefined,
@@ -156,7 +156,7 @@ Keyboard.prototype.showKeyboard = function($input) {
 Keyboard.prototype.hideKeyboard = function() {
   if (this.options.is_hidden) {
     this.isVisible = false;
-    this.$keyboard.slideUp(this.options.closeSpeed);
+    this.$keyboard.slideUp(this.options.close_speed);
   }
 };
 
