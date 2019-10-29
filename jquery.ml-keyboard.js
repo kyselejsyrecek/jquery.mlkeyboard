@@ -299,6 +299,15 @@ Keyboard.prototype.setUpFor = function($input) {
       }
     });
   }
+  
+  // Prevent stealing focus when clicked on the keyboard background (first child element, i.e. <ul>).
+  $(_this.$keyboard[0].firstChild).on("mousedown", function(e) {
+	  if (e.target != e.currentTarget) {
+		  // Do not handle events propagated from nested elements.
+		  return true;
+	  }
+	  e.preventDefault();
+  });
 };
 
 Keyboard.prototype.showKeyboard = function($input) {
