@@ -23,6 +23,7 @@
 @@include('layouts/ru_RU.js')
 @@include('layouts/es_ES.js')
 @@include('layouts/pt_PT.js')
+@@include('layouts/pt_BR.js')
 @@include('layouts/it_IT.js')
 @@include('layouts/fr_FR.js')
 @@include('layouts/de_DE.js')
