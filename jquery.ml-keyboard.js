@@ -1,5 +1,13 @@
 (function($){
-  function Key(params) {
+  function unescapeHTML(html) {
+    var el = document.createElement('div');
+    return html.replace(/\&[#0-9a-z]+;/gi, function (enc) {
+        el.innerHTML = enc;
+        return el.innerHTML;
+    });
+}
+
+function Key(params) {
   if (Object.prototype.toString.call(params) == "[object Arguments]") {
     this.keyboard = params[0];
   } else {
@@ -24,7 +32,7 @@ Key.prototype.setCurrentValue = function() {
   } else {
     this.current_value = this.preferences.d ? this.preferences.d : this.default_value;
   }
-  this.$key.text(this.current_value);
+  this.$key.text(unescapeHTML(this.current_value));
 };
 
 Key.prototype.setCurrentAction = function() {
@@ -89,7 +97,7 @@ Key.prototype.isActive = function() {
   Key.call(this, arguments);
 
   this.id = "mlkeyboard-backspace";
-  this.default_value = '⟵';
+  this.default_value = '&#10229;';
 }
 
 KeyDelete.prototype = new Key();
