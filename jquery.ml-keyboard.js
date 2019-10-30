@@ -1,9 +1,5 @@
 (function($){
   function unescapeHTML(html) {
-	if (typeof html == "undefined") {
-		debugger;
-		return undefined;
-	}
     var el = document.createElement('div');
     return html.replace(/\&[#0-9a-z]+;/gi, function (enc) {
         el.innerHTML = enc;
@@ -45,10 +41,13 @@ Key.prototype.setCurrentValue = function() {
 Key.prototype.setCurrentAction = function() {
   var _this = this;
 
+  this.$key.unbind("mousedown.mlkeyboard");
   this.$key.unbind("click.mlkeyboard");
-  this.$key.bind("click.mlkeyboard", function(){
+  
+  this.$key.bind("mousedown.mlkeyboard", function(){
     _this.keyboard.keep_focus = true;
-
+  });
+  this.$key.bind("click.mlkeyboard", function(){
     if (typeof(_this.preferences.onClick) === "function") {
       _this.preferences.onClick(_this);
     } else {
