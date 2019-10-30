@@ -34,6 +34,7 @@ mlKeyboard.layouts.it_IT = [
     {d: '+', u:'*'},
     {d: ']', u: '}'}
   ]},
+  {d: 'ù',u: '§'},
   {}, // Caps lock
   {d: 'a',u: 'A'},
   {d: 's',u: 'S'},
@@ -52,7 +53,6 @@ mlKeyboard.layouts.it_IT = [
     {d: 'à',u: '°'},
     {d:'#', u: '∞'}
   ]},
-  {d: 'ù',u: '§'},
   {}, // Return
   {}, // Left shift
   {d: '<', u:'>'},
