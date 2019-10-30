@@ -12,25 +12,36 @@
 ### Options
 The following options are available to pass into ML Keyboard on initialization.
 
-* (string) **layout:** set layout which is applicable to all input fields. By default it has value 'en_US' what is equal to American English layout.
+* (string) **layout:** set layout which is applicable to all input fields. Default value - 'en_us', i.e. American English layout.
 
-* (boolean) **active_shift:** when user first time focus on input field virtual keyboards shift is active. Default value - true.
+* (boolean) **active_shift:** initial shift key state (only applicable to the first evocation of the keyboard). Default value - true.
 
-* (boolean) **active_caps:** initial virtual keyboards caps lock state. Default value - false.
+* (boolean) **active_caps:** initial caps lock state (only applicable to the first evocation of the keyboard). Default value - false.
 
-* (boolean) **is_hidden:** to create keyboard always visible this value should be changed to false. Default value - true.
+* (boolean) **is_hidden:** change to false if the keyboard should always be visible. Default value - true.
 
-* (integer) **open_speed:** is speed at what keyboard shows. Default value - 300.
+* (integer) **open_speed:** speed at which the keyboard shows up. Default value - 300.
 
-* (integer) **close_speed:** is speed at what keyboard hides back. Devault value - 100.
+* (integer) **close_speed:** speed at which keyboard hides back. Default value - 300.
 
-* (boolean) **enabled:** - change it to false if you want temporary disable keyboard. This param is useful when defines as input data attribute (read below how to set up single inputs with data attributes).
+* (boolean) **show_on_focus:** display the keyboard when the element it is attached to has gained focus. Default value - true.
 
-To change behaviour of single input field special data attribute should be added to it's tag name <code>data-mlkeyboard-&lt;option&gt;="value"</code> where <code>option</code> is the same attribute like it's described before.
+* (boolean) **hide_on_blur:** hide the keyboard whenever the element it is attached to loses focus. Default value - true.
+
+* (boolean) **blur_on_return:** remove focus from the element to which the keyboard is attached upon pressing the 'return' key. Default value - true.
+
+* (string) **trigger:** jQuery selector of an element (or elements) which will trigger the keyboard (show it or hide) when clicked on. Default value - undefined.
+
+* (boolean) **enabled:** change it to false if you want to disable the keyboard temporarily. This parameter is useful when defined as input data attribute (read below how to set up single inputs with data attributes).
+
+To change behaviour of single input field special data attribute should be added to its tag name <code>data-mlkeyboard-&lt;option&gt;="value"</code> where <code>option</code> is the attribute in question.
 
 ###### Currently possible layouts</h5>
+* **de_DE** - German
 * **en_US** - English
 * **es_ES** - Spanish
+* **fr_FR** - French
 * **it_IT** - Italian
+* **pt_BR** - Portuguese (Brazil)
 * **pt_PT** - Portuguese
 * **ru_RU** - Russian

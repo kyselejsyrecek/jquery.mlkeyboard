@@ -31,6 +31,9 @@ Key.prototype.setCurrentValue = function() {
   } else {
     this.current_value = this.preferences.d ? this.preferences.d : this.default_value;
   }
+  if (typeof this.current_value == "undefined") {
+	  this.current_value = "";
+  }
   this.$key.text(unescapeHTML(this.current_value));
 };
 

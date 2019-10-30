@@ -1,5 +1,9 @@
 (function($){
   function unescapeHTML(html) {
+	if (typeof html == "undefined") {
+		debugger;
+		return undefined;
+	}
     var el = document.createElement('div');
     return html.replace(/\&[#0-9a-z]+;/gi, function (enc) {
         el.innerHTML = enc;
@@ -31,6 +35,9 @@ Key.prototype.setCurrentValue = function() {
     this.current_value = this.preferences.u ? this.preferences.u : this.default_value;
   } else {
     this.current_value = this.preferences.d ? this.preferences.d : this.default_value;
+  }
+  if (typeof this.current_value == "undefined") {
+	  this.current_value = "";
   }
   this.$key.text(unescapeHTML(this.current_value));
 };
@@ -859,6 +866,7 @@ mlKeyboard.layouts.it_IT = [
     {d: '+', u:'*'},
     {d: ']', u: '}'}
   ]},
+  {d: 'ù',u: '§'},
   {}, // Caps lock
   {d: 'a',u: 'A'},
   {d: 's',u: 'S'},
@@ -877,7 +885,6 @@ mlKeyboard.layouts.it_IT = [
     {d: 'à',u: '°'},
     {d:'#', u: '∞'}
   ]},
-  {d: 'ù',u: '§'},
   {}, // Return
   {}, // Left shift
   {d: '<', u:'>'},
@@ -898,56 +905,62 @@ mlKeyboard.layouts.it_IT = [
 var mlKeyboard = mlKeyboard || {layouts: {}};
 
 mlKeyboard.layouts.fr_FR = [
-  {d: '\/', u: '|'},
-  {d: '1',u: '&'},
-  {d: '2',u: 'é', m:[
-    {d: '2', u:'é'},
-    {d:'~', u:'É'}
+  {d: '²', u: ''},
+  {d: '&',u: '1'},
+  {d: 'é',u: '2', m:[
+    {d: 'é',u: '2'},
+    {d: '~',u: 'É'}
   ]},
-  {d: '3',u: '#', m: [
-    {d:'3', u:'#'},
-    {d:'"', u: '#'}
+  {d: '"',u: '3', m: [
+    {d: '"',u: '3'},
+    {d: '#',u: '#'}
   ]},
-  {d: '4',u: '{', m:[
-    {d: '4', u:'{'},
-    {d: '\'', u:'{'}
+  {d: '\'',u: '4', m:[
+    {d: '\'', u:'4'},
+    {d: '{',u: '{'}
   ]},
-  {d: '5',u: '(', m:[
-    {d: '5', u:'('},
-    {d: '[', u:'('}
+  {d: '(',u: '5', m:[
+    {d: '(',u: '5'},
+    {d: '[', u:'['}
   ]},
-  {d: '6',u: '-', m:[
-    {d: '6', u:'-'},
-    {d: '|', u:'-'}
+  {d: '-',u: '6', m:[
+    {d: '-',u: '6'},
+    {d: '|', u:'|'}
   ]},
-  {d: '7',u: 'è', m:[
-    {d: '7', u:'è'},
-    {d: '`', u:'è'}
+  {d: 'è',u: '7', m:[
+    {d: 'è',u: '7'},
+    {d: '`', u:'È'}
   ]},
-  {d: '8',u: '_', m:[
-    {d: '8', u:'_'},
-    {d: '\/', u:'_'}
+  {d: '_',u: '8', m:[
+    {d: '_',u: '8'},
+    {d: '\\', u:'\\'}
   ]},
-  {d: '9',u: '', m:[
-    {d: '9', u:'ç'},
+  {d: 'ç',u: '9', m:[
+    {d: 'ç',u: '9'},
     {d: '^', u:'Ç'}
   ]},
-  {d: '0',u: 'à', m:[
-    {d: '0', u:'à'},
+  {d: 'à',u: '0', m:[
+    {d: 'à',u: '0'},
     {d: '@', u:'À'}
   ]},
-  {d: '°',u: ')', m:[
-    {d: '°', u:')'},
-    {d: ']', u:')'}
+  {d: ')',u: '°', m:[
+    {d: ')', u:'°'},
+    {d: ']', u:']'}
   ]},
-  {d: '+',u: '=', m:[
-    {d: '+', u:'='},
-    {d: '}', u:'='}
+  {d: '=',u: '+', m:[
+    {d: '=', u:'+'},
+    {d: '}', u:'}'}
   ]},
   {}, // Delete
   {}, // Tab
-  {d: 'q',u: 'Q'},
-  {d: 'w',u: 'W'},
+  {d: 'a',u: 'A', m: [
+    {d: 'a', u: 'A'},
+    {d: 'á', u: 'Á'},
+    {d: 'à', u: 'À'},
+    {d: 'ã', u: 'Ã'},
+    {d: 'â', u: 'Â'}
+  ]},
+  {d: 'z',u: 'Z'},
   {d: 'e',u: 'E', m: [
     {d: 'e', u: 'E'},
     {d: 'é', u: 'É'},
@@ -972,17 +985,14 @@ mlKeyboard.layouts.fr_FR = [
     {d: 'ô', u: 'Ô'}
   ]},
   {d: 'p',u: 'P'},
-  {d: '^',u: 'º'},
-  {d: '`',u: '¨'},
-  {d: '\'',u: '"'},
-  {}, // Caps lock
-  {d: 'a',u: 'A', m: [
-    {d: 'a', u: 'A'},
-    {d: 'á', u: 'Á'},
-    {d: 'à', u: 'À'},
-    {d: 'ã', u: 'Ã'},
-    {d: 'â', u: 'Â'}
+  {d: '^',u: '¨'},
+  {d: '$',u: '£', m: [
+	{d: '$', u: '£'},
+	{d: '¤', u: '¤'}
   ]},
+  {d: '*',u: 'µ'},
+  {}, // Caps lock
+  {d: 'q',u: 'Q'},
   {d: 's',u: 'S'},
   {d: 'd',u: 'D'},
   {d: 'f',u: 'F'},
@@ -991,11 +1001,11 @@ mlKeyboard.layouts.fr_FR = [
   {d: 'j',u: 'J'},
   {d: 'k',u: 'K'},
   {d: 'l',u: 'L'},
-  {d: 'ñ',u: 'Ñ'},
-  {d: ';',u: ':'},
+  {d: 'm',u: 'M'},
+  {d: 'ù',u: '%'},
   {}, // Return
   {}, // Left shift
-  {d: 'z',u: 'Z'},
+  {d: 'w',u: 'W'},
   {d: 'x',u: 'X'},
   {d: 'c',u: 'C', m: [
     {d: 'c', u: 'C'},
@@ -1004,10 +1014,10 @@ mlKeyboard.layouts.fr_FR = [
   {d: 'v',u: 'V'},
   {d: 'b',u: 'B'},
   {d: 'n',u: 'N'},
-  {d: 'm',u: 'M'},
-  {d: ',',u: '¿'},
-  {d: '.',u: '?'},
-  {d: 'ç',u: 'Ç'},
+  {d: ',',u: '?'},
+  {d: ';',u: '.'},
+  {d: ':',u: '/'},
+  {d: '!',u: '§'},
   {}, // Right shift
   {}  // Space
 ];

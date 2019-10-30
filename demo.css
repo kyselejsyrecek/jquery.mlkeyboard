@@ -10,6 +10,9 @@ body {
 input {
   height: 50px;
   font-size: 25px;
+}
+
+input, textarea {
   margin: 12px 0 20px 0;
 }
 
@@ -31,6 +34,6 @@ ul#layots_list {
   border: dashed #B3B3B3 1px;
 }
 
-#example-4-btn {
+#example-4-btn, #example-5-btn, #example-6-btn {
   margin: 20px 0 0 10px;
 }

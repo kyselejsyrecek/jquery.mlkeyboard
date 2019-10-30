@@ -18,7 +18,7 @@
 <body>
   <div class="container">
     <h2 class="page-header">jQuery MultiLanguage keyboard</h2>
-    <i>Current version 0.0.1</i>
+    <i>Current version 0.1.0</i>
     <h4>ML Keyboard usage examples</h4>
     <div class="row">
       <div class="col-md-6">
@@ -85,40 +85,41 @@
       </div>
     </div>
 
-    <div class="col-md-6">
-      <div class="example-block">
-        <h4>French
-        <i>(click vowels to select accents)</i></h4>
-        <input type="text" id="example-5" class="col-md-10" placeholder="Try"/>
-        <a href='#' id="example-5-btn" class="btn btn-default"><i class="glyphicon glyphicon-font"></i></a>
-        <div class='code'>
-          <code>
-            $('input#example-5').mlKeyboard({<br/>
-              &nbsp;&nbsp;layout: 'fr_FR',<br/>
-              &nbsp;&nbsp;trigger: '#example-5-btn'<br/>
-            });
-          </code>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="example-block">
+          <h4>French
+          <i>(click vowels to select accents)</i></h4>
+          <input type="text" id="example-5" class="col-md-10" placeholder="Try"/>
+          <a href='#' id="example-5-btn" class="btn btn-default"><i class="glyphicon glyphicon-font"></i></a>
+          <div class='code'>
+            <code>
+              $('input#example-5').mlKeyboard({<br/>
+                &nbsp;&nbsp;layout: 'fr_FR',<br/>
+                &nbsp;&nbsp;trigger: '#example-5-btn'<br/>
+              });
+            </code>
+          </div>
+        </div>
+      </div>
+	  
+      <div class="col-md-6">
+        <div class="example-block">
+          <h4>Text Area
+          <i>(click vowels to select accents)</i></h4>
+          <textarea type="text" id="example-6" class="col-md-10" rows="10"></textarea>
+          <a href='#' id="example-6-btn" class="btn btn-default"><i class="glyphicon glyphicon-font"></i></a>
+          <div class='code'>
+            <code>
+              $('textarea#example-6').mlKeyboard({<br/>
+                &nbsp;&nbsp;layout: 'pt_PT',<br/>
+                &nbsp;&nbsp;trigger: '#example-6-btn'<br/>
+              });
+            </code>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="col-md-6">
-      <div class="example-block">
-        <h4>Text Area
-        <i>(click vowels to select accents)</i></h4>
-        <textarea type="text" id="example-6" class="col-md-10" rows="10"></textarea>
-        <a href='#' id="example-6-btn" class="btn btn-default"><i class="glyphicon glyphicon-font"></i></a>
-        <div class='code'>
-          <code>
-            $('textarea#example-6').mlKeyboard({<br/>
-              &nbsp;&nbsp;layout: 'pt_PT',<br/>
-              &nbsp;&nbsp;trigger: '#example-6-btn'<br/>
-            });
-          </code>
-        </div>
-      </div>
-    </div>
-  </div>
 
     <div class="row">
       <div class="col-md-12">
@@ -133,19 +134,31 @@
         <p>The following options are available to pass into ML Keyboard on initialization.</p>
         <ul>
           <li>
-            (string) <b>layout:</b> set layout which is applicable to all input fields. By default it has value 'en_us' what is equal to American English layout.
-            <h5>Others currently possible layouts</h5>
+            (string) <b>layout:</b> set layout which is applicable to all input fields. Default value - 'en_us', i.e. American English layout.
+            <h5>List of layouts currently supported:</h5>
             <ul id="layots_list">
-              <li><b>es</b> - Spanish</li>
-              <li><b>ru</b> - Russian</li>
+			  <li><b>de_DE</b> - German</li>
+			  <li><b>en_US</b> - English</li>
+			  <li><b>es_ES</b> - Spanish</li>
+			  <li><b>fr_FR</b> - French</li>
+			  <li><b>it_IT</b> - Italian</li>
+			  <li><b>pt_BR</b> - Portuguese (Brazil)</li>
+			  <li><b>pt_PT</b> - Portuguese</li>
+			  <li><b>ru_RU</b> - Russian</li>
             </ul>
           </li>
-          <li>(boolean) <b>active_shift:</b> when user first time focus on input field virtual keyboards shift is active. Default value - <b>true</b>.
-          <li>(boolean) <b>active_caps:</b> initial virtual keyboards caps lock state. Default value - <b>false</b>.
-          <li>(boolean) <b>is_hidden:</b> to create keyboard always visible this value should be changed to false. Default value - <b>true</b>.
-          <li>(integer) <b>speed: </b> is speed at what keyboard shows and hides. Default value - <b>300</b>.
+          <li>(boolean) <b>active_shift:</b> initial shift key state (only applicable to the first evocation of the keyboard). Default value - <b>true</b>.
+          <li>(boolean) <b>active_caps:</b> initial caps lock state (only applicable to the first evocation of the keyboard). Default value - <b>false</b>.
+          <li>(boolean) <b>is_hidden:</b> change to false if the keyboard should always be visible. Default value - <b>true</b>.
+		  <li>(integer) <b>open_speed:</b> speed at which keyboard shows up. Default value - <b>300</b>.
+		  <li>(integer) <b>close_speed:</b> speed at which keyboard hides back. Default value - <b>300</b>.
+		  <li>(boolean) <b>show_on_focus:</b> display the keyboard when the element it is attached to has gained focus. Default value - <b>true</b>.
+		  <li>(boolean) <b>hide_on_blur:</b> hide the keyboard whenever the element it is attached to loses focus. Default value - <b>true</b>.
+		  <li>(boolean) <b>blur_on_return:</b> remove focus from the element to which the keyboard is attached upon pressing the 'return' key. Default value - <b>true</b>.
+		  <li>(string) <b>trigger:</b> jQuery selector of an element (or elements) which will trigger the keyboard (show it or hide) when clicked on. Default value - <b>undefined</b>.
+		  <li>(boolean) <b>enabled:</b> change it to false if you want to disable the keyboard temporarily. This parameter is useful when defined as input data attribute (read below how to set up single inputs with data attributes).
         </ul>
-        <p>To change behaviour of single input field special data attribute should be added to it's tag name <code>data-mlkeyboard-&lt;option&gt;="value"</code> where <code>option</code> is the same attribute like it's described before.
+        <p>To change behaviour of single input field special data attribute should be added to its tag name <code>data-mlkeyboard-&lt;option&gt;="value"</code> where <code>option</code> is the attribute in question.
 
         <h3 class="page-header">Advanced Usage</h3>
         <p>
