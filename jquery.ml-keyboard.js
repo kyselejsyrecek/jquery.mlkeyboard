@@ -146,6 +146,13 @@ KeyReturn.prototype.defaultClickAction = function() {
     keyCode: 13
   });
   this.keyboard.$current_input.trigger(e);
+  
+  if (this.keyboard.options.blur_on_return) {
+	  this.keyboard.$current_input.blur();
+	  if (this.keyboard.options.hide_on_blur) {
+		this.keyboard.hideKeyboard();
+	  }
+  }
 };
   function KeyShift() {
   Key.call(this, arguments);
@@ -185,6 +192,7 @@ function Keyboard(selector, options){
     close_speed: 300,
     show_on_focus: true,
     hide_on_blur: true,
+	blur_on_return: true,
     trigger: undefined,
     enabled: true
   };

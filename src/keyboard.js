@@ -10,6 +10,7 @@ function Keyboard(selector, options){
     close_speed: 300,
     show_on_focus: true,
     hide_on_blur: true,
+	blur_on_return: true,
     trigger: undefined,
     enabled: true
   };
