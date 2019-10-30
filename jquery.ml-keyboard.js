@@ -111,6 +111,7 @@ KeyDelete.prototype.constructor = KeyDelete;
 
 KeyDelete.prototype.defaultClickAction = function() {
   this.keyboard.deleteChar();
+  this.keyboard.$current_input.change();
 };
   function KeyTab() {
   Key.call(this, arguments);
@@ -387,7 +388,7 @@ Keyboard.prototype.printChar = function(char) {
   var textAreaStr = this.$current_input.val();
   var value = textAreaStr.substring(0, selStart) + char + textAreaStr.substring(selEnd);
 
-  this.$current_input.val(value).focus();
+  this.$current_input.val(value).focus().change();
   this.$current_input[0].selectionStart = selStart+1, this.$current_input[0].selectionEnd = selStart+1;
 
 };

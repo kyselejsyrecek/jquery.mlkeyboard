@@ -10,4 +10,5 @@ KeyDelete.prototype.constructor = KeyDelete;
 
 KeyDelete.prototype.defaultClickAction = function() {
   this.keyboard.deleteChar();
+  this.keyboard.$current_input.change();
 };
