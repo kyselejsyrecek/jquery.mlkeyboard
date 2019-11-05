@@ -31,6 +31,11 @@ Keyboard.prototype.init = function() {
   $("body").append(this.$keyboard);
 
   if (this.options.is_hidden) this.$keyboard.hide();
+  
+  this.$keyboard.on("mousedown", function (e) {
+	  // Prevent focus stealing.
+	  e.preventDefault();
+  });
 
   this.setUpKeys();
 };
