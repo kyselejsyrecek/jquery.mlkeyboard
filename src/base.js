@@ -15,6 +15,8 @@
     this.each(function(){
       keyboard.setUpFor($(this));
     });
+	
+	return keyboard;
   };
 
 })(jQuery);
