@@ -12,7 +12,7 @@ function Keyboard(selector, options){
     hide_on_blur: true,
 	hide_on_return: true,
 	hide_on_tab: false,
-	blur_on_return: false,
+	blur_on_return: true,
 	enter_key: true,
 	line_ending: "\n",
     trigger: undefined,

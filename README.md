@@ -30,7 +30,7 @@ The following options are available to pass into ML Keyboard on initialization.
 
 * (boolean) **hide_on_return:** hide the keyboard when the return key is pressed. Default value - true.
 
-* (boolean) **hide_on_tab:** hide the keyboard when the tab key is pressed. Default value - false.
+* (boolean) **hide_on_tab:** hide the keyboard when the tab key is pressed. Interferes with the *hide_on_blur* option. Default value - false.
 
 * (boolean) **blur_on_return:** remove focus from the element to which the keyboard is attached upon pressing the *return* key. Default value - true.
 

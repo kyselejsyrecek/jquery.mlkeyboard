@@ -182,12 +182,13 @@ KeyReturn.prototype.defaultClickAction = function() {
 	this.current_value = this.keyboard.options.line_ending;
     Key.prototype.defaultClickAction.call(this, arguments);
   }
-  
-  if (this.keyboard.options.blur_on_return) {
-    this.keyboard.$current_input.blur();
-    if (this.keyboard.options.hide_on_return) {
-      this.keyboard.hideKeyboard();
-    }
+  else {
+	if (this.keyboard.options.blur_on_return) {
+	  this.keyboard.$current_input.blur();
+	}
+	if (this.keyboard.options.hide_on_return) {
+	  this.keyboard.hideKeyboard();
+	}
   }
 }
   function KeyShift() {
@@ -230,7 +231,7 @@ function Keyboard(selector, options){
     hide_on_blur: true,
 	hide_on_return: true,
 	hide_on_tab: false,
-	blur_on_return: false,
+	blur_on_return: true,
 	enter_key: true,
 	line_ending: "\n",
     trigger: undefined,
