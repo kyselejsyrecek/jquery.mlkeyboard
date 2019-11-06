@@ -1,7 +1,7 @@
 function KeyTab() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-tab";
+  this.key_class = "mlkeyboard-tab";
   this.default_value = 'tab';
 }
 

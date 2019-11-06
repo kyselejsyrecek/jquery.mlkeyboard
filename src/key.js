@@ -18,8 +18,8 @@ function Key(params) {
 }
 
 Key.prototype.render = function() {
-  if (this.id) {
-    this.$key.attr("id", this.id);
+  if (this.key_class) {
+    this.$key.addClass(this.key_class);
   }
 
   return this.$key;

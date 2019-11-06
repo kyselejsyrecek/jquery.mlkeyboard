@@ -1,7 +1,7 @@
 function KeyReturn() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-return";
+  this.key_class = "mlkeyboard-return";
   this.default_value = 'return';
 }
 

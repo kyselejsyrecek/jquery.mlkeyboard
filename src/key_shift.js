@@ -1,7 +1,7 @@
 function KeyShift() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-"+arguments[1]+"-shift";
+  this.key_class = "mlkeyboard-"+arguments[1]+"-shift";
   this.default_value = 'shift';
 }
 

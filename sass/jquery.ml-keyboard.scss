@@ -1,6 +1,6 @@
 $freeze-size: 700px;
 
-div#mlkeyboard {
+div.mlkeyboard {
   font-family: Tahoma,Arial,sans-serif;
   width: 100%;
   position: fixed;
@@ -58,17 +58,17 @@ div#mlkeyboard {
       }
     }
 
-    #mlkeyboard-capslock, #mlkeyboard-tab, #mlkeyboard-left-shift {
+    .mlkeyboard-capslock, .mlkeyboard-tab, .mlkeyboard-left-shift {
       clear: left;
     }
 
-    #mlkeyboard-backspace {
+    .mlkeyboard-backspace {
       @media screen and (min-width: $freeze-size) {
         width: 66px;
       }
     }
 
-    #mlkeyboard-tab {
+    .mlkeyboard-tab {
       width: 7%;
 
       @media screen and (min-width: $freeze-size) {
@@ -76,7 +76,7 @@ div#mlkeyboard {
       }
     }
 
-    #mlkeyboard-capslock {
+    .mlkeyboard-capslock {
       width: 12%;
 
       @media screen and (min-width: $freeze-size) {
@@ -84,7 +84,7 @@ div#mlkeyboard {
       }
     }
 
-    #mlkeyboard-return {
+    .mlkeyboard-return {
       width: 8%;
 
       @media screen and (min-width: $freeze-size) {
@@ -92,7 +92,7 @@ div#mlkeyboard {
       }
     }
 
-    #mlkeyboard-left-shift {
+    .mlkeyboard-left-shift {
       width: 14%;
 
       @media screen and (min-width: $freeze-size) {
@@ -100,7 +100,7 @@ div#mlkeyboard {
       }
     }
 
-    #mlkeyboard-right-shift {
+    .mlkeyboard-right-shift {
       width: 12%;
 
       @media screen and (min-width: 540px) {
@@ -109,7 +109,7 @@ div#mlkeyboard {
       }
     }
 
-    #mlkeyboard-space {
+    .mlkeyboard-space {
       clear: left;
       width: 98%;
 

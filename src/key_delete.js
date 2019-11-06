@@ -1,7 +1,7 @@
 function KeyDelete() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-backspace";
+  this.key_class = "mlkeyboard-backspace";
   this.default_value = '&#10229;';
 }
 

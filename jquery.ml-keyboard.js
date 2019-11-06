@@ -19,8 +19,8 @@ function Key(params) {
 }
 
 Key.prototype.render = function() {
-  if (this.id) {
-    this.$key.attr("id", this.id);
+  if (this.key_class) {
+    this.$key.addClass(this.key_class);
   }
 
   return this.$key;
@@ -98,7 +98,7 @@ Key.prototype.isActive = function() {
   function KeyDelete() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-backspace";
+  this.key_class = "mlkeyboard-backspace";
   this.default_value = '&#10229;';
 }
 
@@ -112,7 +112,7 @@ KeyDelete.prototype.defaultClickAction = function() {
   function KeyTab() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-tab";
+  this.key_class = "mlkeyboard-tab";
   this.default_value = 'tab';
 }
 
@@ -137,7 +137,7 @@ KeyTab.prototype.defaultClickAction = function() {
   function KeyCapsLock() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-capslock";
+  this.key_class = "mlkeyboard-capslock";
   this.default_value = 'caps lock';
 }
 
@@ -154,7 +154,7 @@ KeyCapsLock.prototype.defaultClickAction = function() {
   function KeyReturn() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-return";
+  this.key_class = "mlkeyboard-return";
   this.default_value = 'return';
 }
 
@@ -193,7 +193,7 @@ KeyReturn.prototype.defaultClickAction = function() {
   function KeyShift() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-"+arguments[1]+"-shift";
+  this.key_class = "mlkeyboard-"+arguments[1]+"-shift";
   this.default_value = 'shift';
 }
 
@@ -210,7 +210,7 @@ KeyShift.prototype.defaultClickAction = function() {
   function KeySpace() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-space";
+  this.key_class = "mlkeyboard-space";
   this.default_value = ' ';
 }
 
@@ -228,7 +228,7 @@ function Keyboard(selector, options){
     close_speed: 300,
     show_on_focus: true,
     hide_on_blur: true,
-	hide_on_return: false,
+	hide_on_return: true,
 	hide_on_tab: false,
 	blur_on_return: false,
 	enter_key: true,
@@ -242,7 +242,7 @@ function Keyboard(selector, options){
 
   this.keys = [];
 
-  this.$keyboard = $("<div/>").attr("id", "mlkeyboard");
+  this.$keyboard = $("<div/>").addClass("mlkeyboard");
   this.$modifications_holder = $("<ul/>").addClass('mlkeyboard-modifications');
   this.$current_input = $(selector);
 }

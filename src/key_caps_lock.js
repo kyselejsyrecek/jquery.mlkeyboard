@@ -1,7 +1,7 @@
 function KeyCapsLock() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-capslock";
+  this.key_class = "mlkeyboard-capslock";
   this.default_value = 'caps lock';
 }
 

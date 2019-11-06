@@ -1,7 +1,7 @@
 function KeySpace() {
   Key.call(this, arguments);
 
-  this.id = "mlkeyboard-space";
+  this.key_class = "mlkeyboard-space";
   this.default_value = ' ';
 }
 
