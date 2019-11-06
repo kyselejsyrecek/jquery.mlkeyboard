@@ -2,7 +2,7 @@
 
 **ML Keyboard** is a jQuery virtual keyboard with features to change input layouts on the flight.
 
-#### [Demo](http://mbut.github.io/jquery.mlkeyboard/)
+#### [Demo](http://kyselejsyrecek.github.io/jquery.mlkeyboard/)
 
 ## Requirements
 * [GRUNT](http://gruntjs.com/)  
@@ -53,7 +53,7 @@ mlKeyboard.layouts.it_IT = [
   {d: '8',u: '('},
   {d: '9',u: ')'},
   {d: '0',u: '='},
-  {d: ''',u: '?'},
+  {d: '\'',u: '?'},
   {d: 'ì',u: '^'},
   {}, // Delete
   {}, // Tab
@@ -67,14 +67,15 @@ mlKeyboard.layouts.it_IT = [
   {d: 'i',u: 'I'},
   {d: 'o',u: 'O'},
   {d: 'p',u: 'P'},
-  {d: 'e',u: 'é', m: [
-    {d: 'e', u: 'é'},
+  {d: 'è',u: 'é', m: [
+    {d: 'è', u: 'é'},
     {d: '[', u: '{'}
   ]},
   {d: '+',u: '*', m: [
     {d: '+', u:'*'},
     {d: ']', u: '}'}
   ]},
+  {d: 'ù',u: '§'},
   {}, // Caps lock
   {d: 'a',u: 'A'},
   {d: 's',u: 'S'},
@@ -87,16 +88,14 @@ mlKeyboard.layouts.it_IT = [
   {d: 'l',u: 'L'},
   {d: 'ò',u: 'ç', m:[
     {d: 'ò',u: 'ç'},
-    {d:'@', u 'Ç'}
+    {d:'@', u: 'Ç'}
   ]},
   {d: 'à',u: '°', m:[
     {d: 'à',u: '°'},
-    {d:'#', u '∞'}
+    {d:'#', u: '∞'}
   ]},
-  {d: 'ù'',u: '§'},
   {}, // Return
   {}, // Left shift
-  {d: '<', u:'>'},
   {d: 'z',u: 'Z'},
   {d: 'x',u: 'X'},
   {d: 'c',u: 'C'},
