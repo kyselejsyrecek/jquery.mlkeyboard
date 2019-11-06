@@ -9,7 +9,7 @@ KeyTab.prototype = new Key();
 KeyTab.prototype.constructor = KeyTab;
 
 KeyTab.prototype.defaultClickAction = function() {
-  var $inputs = $(":input");
+  var $inputs = $(":input:focusable");
   var offset = (this.keyboard.active_shift) ? -1 : 1;
   var next_index = ($inputs.index(this.keyboard.$current_input) + offset) % $inputs.length;
   var $next_input = $inputs.eq(next_index);

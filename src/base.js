@@ -1,4 +1,8 @@
 (function($){
+  // jQuery extension.
+  @@include('focusable.js');
+  
+  // Keyboard internals.
   @@include('key.js')
   @@include('key_delete.js')
   @@include('key_tab.js')
@@ -21,6 +25,7 @@
 
 })(jQuery);
 
+// Keyboard layouts.
 @@include('layouts/en_US.js')
 @@include('layouts/ru_RU.js')
 @@include('layouts/es_ES.js')
