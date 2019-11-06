@@ -2,7 +2,7 @@
 
 **ML Keyboard** is a jQuery virtual keyboard with features to change input layouts on the flight.
 
-#### [Demo](http://mbut.github.io/jquery.mlkeyboard/)
+#### [Demo](http://kyselejsyrecek.github.io/jquery.mlkeyboard/)
 
 ## Usage
 * Download <code>jquery.ml-keyboard.min.js</code> and <code>jquery.ml-keyboard.css</code> files and add to your project.

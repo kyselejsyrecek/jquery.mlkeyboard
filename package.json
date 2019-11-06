@@ -1,14 +1,14 @@
 {
   "name": "jquery.ml-keyboard",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "jQuery multilanguage keyboard",
   "author": "Mihails Butorins",
   "contributors": "Lukáš Chmela",
-  "homepage": "http://mbut.github.io/jquery.mlkeyboard/",
+  "homepage": "http://kyselejsyrecek.github.io/jquery.mlkeyboard/",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kyselejsyrecek/jquery.mlkeyboard"
+    "url": "http://github.com/kyselejsyrecek/jquery.mlkeyboard"
   },
   "devDependencies": {
     "grunt": "^0.4.2",
