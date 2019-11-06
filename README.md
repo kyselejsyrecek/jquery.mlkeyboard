@@ -32,7 +32,11 @@ The following options are available to pass into ML Keyboard on initialization.
 
 * (boolean) **hide_on_tab:** hide the keyboard when the tab key is pressed. Default value - false.
 
-* (boolean) **blur_on_return:** remove focus from the element to which the keyboard is attached upon pressing the 'return' key. Default value - true.
+* (boolean) **blur_on_return:** remove focus from the element to which the keyboard is attached upon pressing the *return* key. Default value - true.
+
+* (boolean) **enter_key:** return key will be treated as enter key on textareas, adding a new line. Default value - <b>true</b>.
+
+* (string) **line_ending:** inserted into textarea value when pressing enter if the *enter_key* option is enabled. Default value - "\n".
 
 * (string) **trigger:** jQuery selector of an element (or elements) which will trigger the keyboard (show it or hide) when clicked on. Default value - undefined.
 

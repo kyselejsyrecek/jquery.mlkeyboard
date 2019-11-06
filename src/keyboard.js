@@ -13,6 +13,8 @@ function Keyboard(selector, options){
 	hide_on_return: false,
 	hide_on_tab: false,
 	blur_on_return: false,
+	enter_key: true,
+	line_ending: "\n",
     trigger: undefined,
     enabled: true
   };
@@ -179,7 +181,7 @@ Keyboard.prototype.printChar = function(char) {
   var value = textAreaStr.substring(0, selStart) + char + textAreaStr.substring(selEnd);
 
   if (!this.$current_input.is(":focus")) {
-	this.$current_input.val(value).focus()
+	this.$current_input.focus()
   }
 
   this.$current_input.val(value).change();
