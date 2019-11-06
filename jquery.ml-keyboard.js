@@ -880,8 +880,8 @@ mlKeyboard.layouts.it_IT = [
   {d: 'i',u: 'I'},
   {d: 'o',u: 'O'},
   {d: 'p',u: 'P'},
-  {d: 'e',u: 'é', m: [
-    {d: 'e', u: 'é'},
+  {d: 'è',u: 'é', m: [
+    {d: 'è', u: 'é'},
     {d: '[', u: '{'}
   ]},
   {d: '+',u: '*', m: [
@@ -909,7 +909,6 @@ mlKeyboard.layouts.it_IT = [
   ]},
   {}, // Return
   {}, // Left shift
-  {d: '<', u:'>'},
   {d: 'z',u: 'Z'},
   {d: 'x',u: 'X'},
   {d: 'c',u: 'C'},
