@@ -15,6 +15,7 @@ function Keyboard(selector, options){
 	blur_on_return: true,
 	enter_key: true,
 	line_ending: "\n",
+	class_list: "",
     trigger: undefined,
     enabled: true
   };
@@ -24,7 +25,7 @@ function Keyboard(selector, options){
 
   this.keys = [];
 
-  this.$keyboard = $("<div/>").addClass("mlkeyboard");
+  this.$keyboard = $("<div/>").addClass("mlkeyboard " + this.options.class_list);
   this.$modifications_holder = $("<ul/>").addClass('mlkeyboard-modifications');
   this.$current_input = $(selector);
 }
