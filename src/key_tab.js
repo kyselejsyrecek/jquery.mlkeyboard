@@ -9,6 +9,15 @@ KeyTab.prototype = new Key();
 KeyTab.prototype.constructor = KeyTab;
 
 KeyTab.prototype.defaultClickAction = function() {
-  this.keyboard.hideKeyboard();
-  $(":input").eq($(":input").index(this.keyboard.$current_input)+1).focus();
+  var $inputs = $(":input");
+  var offset = (this.keyboard.active_shift) ? -1 : 1;
+  var next_index = ($inputs.index(this.keyboard.$current_input) + offset) % $inputs.length;
+  var $next_input = $inputs.eq(next_index);
+  
+  if ($next_input != this.keyboard.$current_input) {
+	$next_input.focus();
+	
+	// TODO Do not hide? Configurable?
+    this.keyboard.hideKeyboard();
+  }
 };

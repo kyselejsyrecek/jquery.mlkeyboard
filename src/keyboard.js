@@ -104,23 +104,14 @@ Keyboard.prototype.setUpFor = function($input) {
 
   if (this.options.hide_on_blur) {
     $input.bind('blur', function() {
-      var VERIFY_STATE_DELAY = 500;
-
-      // Input focus changes each time when user click on keyboard key
-      // To prevent momentary keyboard collapse input state verifies with timers help
-      // Any key click action set current inputs keep_focus variable to true
-      clearTimeout(_this.blur_timeout);
-
-      _this.blur_timeout = setTimeout(function(){
-        if (!_this.keep_focus) { _this.hideKeyboard(); }
-        else { _this.keep_focus = false; }
-      }, VERIFY_STATE_DELAY);
+      _this.hideKeyboard();
     });
   }
 
   if (this.options.trigger) {
     var $trigger = $(this.options.trigger);
-    $trigger.bind('click', function(e) {
+    $trigger.bind('mousedown', function(e) {
+      // Prevent stealing focus.
       e.preventDefault();
 
       if (_this.isVisible) { _this.hideKeyboard(); }
@@ -130,28 +121,17 @@ Keyboard.prototype.setUpFor = function($input) {
       }
     });
   }
-  
-  // Prevent stealing focus when clicked on the keyboard background (first child element, i.e. <ul>).
-  $(_this.$keyboard[0].firstChild).on("mousedown", function(e) {
-	  if (e.target != e.currentTarget) {
-		  // Do not handle events propagated from nested elements.
-		  return true;
-	  }
-	  e.preventDefault();
-  });
 };
 
 Keyboard.prototype.showKeyboard = function($input) {
   var input_changed = !this.$current_input || $input[0] !== this.$current_input[0];
 
-  if (!this.keep_focus || input_changed) {
-    if (input_changed) this.keep_focus = true;
+  if (!this.isVisible || input_changed) {
 
     this.$current_input = $input;
     this.options = $.extend({}, this.global_options, this.inputLocalOptions());
 
     if (!this.options.enabled) {
-      this.keep_focus = false;
       return;
     }
 
@@ -161,7 +141,7 @@ Keyboard.prototype.showKeyboard = function($input) {
 
     this.setUpKeys();
 
-    if (this.options.is_hidden) {
+	if (!this.isVisible) {
       this.isVisible = true;
       this.$keyboard.slideDown(this.options.openSpeed);
     }
@@ -169,7 +149,7 @@ Keyboard.prototype.showKeyboard = function($input) {
 };
 
 Keyboard.prototype.hideKeyboard = function() {
-  if (this.options.is_hidden) {
+  if (this.isVisible) {
     this.isVisible = false;
     this.$keyboard.slideUp(this.options.close_speed);
   }
@@ -196,7 +176,11 @@ Keyboard.prototype.printChar = function(char) {
   var textAreaStr = this.$current_input.val();
   var value = textAreaStr.substring(0, selStart) + char + textAreaStr.substring(selEnd);
 
-  this.$current_input.val(value).focus().change();
+  if (!this.$current_input.is(":focus")) {
+	this.$current_input.val(value).focus()
+  }
+
+  this.$current_input.val(value).change();
   this.$current_input[0].selectionStart = selStart+1, this.$current_input[0].selectionEnd = selStart+1;
 
 };
@@ -208,7 +192,12 @@ Keyboard.prototype.deleteChar = function() {
   var textAreaStr = this.$current_input.val();
   var after = textAreaStr.substring(0, selStart-1);
   var value = after + textAreaStr.substring(selEnd);
-  this.$current_input.val(value).focus();
+
+  if (!this.$current_input.is(":focus")) {
+	this.$current_input.val(value).focus()
+  }
+
+  this.$current_input.val(value);
   this.$current_input[0].selectionStart = selStart-1, this.$current_input[0].selectionEnd = selStart-1;
 
 };

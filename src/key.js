@@ -43,8 +43,6 @@ Key.prototype.setCurrentAction = function() {
   this.$key.unbind("mousedown.mlkeyboard");
   
   this.$key.bind("mousedown.mlkeyboard", function(){
-    _this.keyboard.keep_focus = true;
-	
     if (typeof(_this.preferences.onClick) === "function") {
       _this.preferences.onClick(_this);
     } else {
