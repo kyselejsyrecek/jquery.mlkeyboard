@@ -128,8 +128,9 @@ KeyTab.prototype.defaultClickAction = function() {
   if ($next_input != this.keyboard.$current_input) {
 	$next_input.focus();
 	
-	// TODO Do not hide? Configurable?
-    this.keyboard.hideKeyboard();
+	if (this.keyboard.options.hide_on_tab) {
+      this.keyboard.hideKeyboard();
+	}
   }
 };
 
@@ -169,7 +170,7 @@ KeyReturn.prototype.defaultClickAction = function() {
   
   if (this.keyboard.options.blur_on_return) {
 	  this.keyboard.$current_input.blur();
-	  if (this.keyboard.options.hide_on_blur) {
+	  if (this.keyboard.options.hide_on_return) {
 		this.keyboard.hideKeyboard();
 	  }
   }
@@ -212,7 +213,9 @@ function Keyboard(selector, options){
     close_speed: 300,
     show_on_focus: true,
     hide_on_blur: true,
-	blur_on_return: true,
+	hide_on_return: false,
+	hide_on_tab: false,
+	blur_on_return: false,
     trigger: undefined,
     enabled: true
   };

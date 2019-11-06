@@ -17,7 +17,7 @@ KeyReturn.prototype.defaultClickAction = function() {
   
   if (this.keyboard.options.blur_on_return) {
 	  this.keyboard.$current_input.blur();
-	  if (this.keyboard.options.hide_on_blur) {
+	  if (this.keyboard.options.hide_on_return) {
 		this.keyboard.hideKeyboard();
 	  }
   }

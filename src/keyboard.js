@@ -10,7 +10,9 @@ function Keyboard(selector, options){
     close_speed: 300,
     show_on_focus: true,
     hide_on_blur: true,
-	blur_on_return: true,
+	hide_on_return: false,
+	hide_on_tab: false,
+	blur_on_return: false,
     trigger: undefined,
     enabled: true
   };

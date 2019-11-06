@@ -17,7 +17,8 @@ KeyTab.prototype.defaultClickAction = function() {
   if ($next_input != this.keyboard.$current_input) {
 	$next_input.focus();
 	
-	// TODO Do not hide? Configurable?
-    this.keyboard.hideKeyboard();
+	if (this.keyboard.options.hide_on_tab) {
+      this.keyboard.hideKeyboard();
+	}
   }
 };

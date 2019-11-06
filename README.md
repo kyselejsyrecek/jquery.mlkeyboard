@@ -28,6 +28,10 @@ The following options are available to pass into ML Keyboard on initialization.
 
 * (boolean) **hide_on_blur:** hide the keyboard whenever the element it is attached to loses focus. Default value - true.
 
+* (boolean) **hide_on_return:** hide the keyboard when the return key is pressed. Default value - true.
+
+* (boolean) **hide_on_tab:** hide the keyboard when the tab key is pressed. Default value - false.
+
 * (boolean) **blur_on_return:** remove focus from the element to which the keyboard is attached upon pressing the 'return' key. Default value - true.
 
 * (string) **trigger:** jQuery selector of an element (or elements) which will trigger the keyboard (show it or hide) when clicked on. Default value - undefined.
